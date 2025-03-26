@@ -4,15 +4,13 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, SQS_QUEUE_URL
+from config import AWS_REGION, SQS_QUEUE_URL
 
 class SQSClient:
     def __init__(self):
         self.sqs = boto3.client(
             'sqs',
-            region_name=AWS_REGION,
-            aws_access_key_id=AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+            region_name=AWS_REGION
         )
         self.queue_url = SQS_QUEUE_URL
 

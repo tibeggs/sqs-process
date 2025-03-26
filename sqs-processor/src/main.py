@@ -38,7 +38,7 @@ class SQSProcessor:
             cursor = self.db.cursor()
 
             sql = """
-                INSERT INTO exTable 
+                INSERT INTO extable 
                 (message, message_time) 
                 VALUES (%s, %s)
             """
@@ -84,6 +84,8 @@ class SQSProcessor:
 
             except Exception as e:
                 print(f"Error: {str(e)}")
+                print("Full traceback:")
+                traceback.print_exc()
                 time.sleep(self.poll_interval)
         
         print("SQS processor shutting down")
