@@ -6,6 +6,5 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/ /app/src/
-RUN pip install -e .
 
 CMD ["python", "src/main.py"]
