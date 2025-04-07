@@ -22,9 +22,19 @@ class SQSProcessor:
         print("\nShutdown signal received. Finishing current processing and exiting...")
         self.running = False
 
+    def try_json(self, message):
+        """Check if the message body is valid JSON"""
+        try:
+            jmessage = json.loads(message)
+            return jmessage["message"]
+        except (ValueError, KeyError) as e:
+            print(f"Invalid JSON: {e}")
+            return message
+    
     def process_message(self, message):
         try:
             message_body = message['Body']
+            message_body = self.try_json(message_body)
             print(f"Message body: {message_body}")
             
             # Convert timestamp from milliseconds to datetime

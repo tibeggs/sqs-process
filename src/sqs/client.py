@@ -13,7 +13,7 @@ class SQSClient:
             region_name=AWS_REGION
         )
         self.queue_url = SQS_QUEUE_URL
-
+    
     def receive_message(self):
         response = self.sqs.receive_message(
             QueueUrl=self.queue_url,
